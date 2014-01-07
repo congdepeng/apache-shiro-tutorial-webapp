@@ -1,0 +1,55 @@
+-rw-------  1 depeng depeng   98 Jan  7 16:54 apiKey.properties
+depeng@depeng:~/.stormpath$ curl -X POST --user 46AQIRDRHOAAXMFDV4T2OM0SP:gWTPtVJ+TFKXrvg7CdNCjOZlznaX+DhHsyvx4R/cFHY -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name" : "Apache Shiro Tutorial Webapp"}' 'https://api.stormpath.com/v1/applications?createDirectory=true'
+
+
+
+curl -X POST --user 46AQIRDRHOAAXMFDV4T2OM0SP:gWTPtVJ+TFKXrvg7CdNCjOZlznaX+DhHsyvx4R/cFHY -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name" : "Apache Shiro Tutorial Webapp"}' 'https://api.stormpath.com/v1/applications?createDirectory=true'
+
+
+{"href":"https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM",
+"name":"Apache Shiro Tutorial Webapp",
+"description":null,
+"status":"ENABLED",
+"tenant":{"href":"https://api.stormpath.com/v1/tenants/1Ap654ATQhYIMmZLWjSsPu"},
+"defaultAccountStoreMapping":{"href":"https://api.stormpath.com/v1/accountStoreMappings/6LBO2hB5sTs6Z94MrMGu1G"},
+"defaultGroupStoreMapping":{"href":"https://api.stormpath.com/v1/accountStoreMappings/6LBO2hB5sTs6Z94MrMGu1G"},
+"accounts":{"href":"https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM/accounts"},
+"groups":{"href":"https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM/groups"},
+"accountStoreMappings":{"href":"https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM/accountStoreMappings"},
+"loginAttempts":{"href":"https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM/loginAttempts"},
+"passwordResetTokens":{"href":"https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM/passwordResetTokens"}}
+
+
+depeng@depeng:~/.stormpath$
+
+
+
+
+curl -X POST --user 46AQIRDRHOAAXMFDV4T2OM0SP:gWTPtVJ+TFKXrvg7CdNCjOZlznaX+DhHsyvx4R/cFHY \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+           "givenName": "Depeng",
+           "surname": "Cong",
+           "username": "depeng",
+           "email": "congdepeng@gmail.com",
+           "password":"cong989575.N"
+        }' \
+ "https://api.stormpath.com/v1/applications/6LB2QQiB6vW3gWxh0XFjQM/accounts"
+
+
+=========
+{"href":"https://api.stormpath.com/v1/accounts/1wiYBRbNJ5huJu2HWeraLG","username":"jlpicard","email":"capt@enterprise.com","givenName":"Jean-Luc","middleName":null,"surname":"Picard","fullName":"Jean-Luc Picard","status":"ENABLED","emailVerificationToken":null,"customData":{"href":"https://api.stormpath.com/v1/accounts/1wiYBRbNJ5huJu2HWeraLG/customData"},"directory":{"href":"https://api.stormpath.com/v1/directories/6LB6kU0MSpzGf3NpNV3Z8w"},"tenant":{"href":"https://api.stormpath.com/v1/tenants/1Ap654ATQhYIMmZLWjSsPu"},"groups":{"href":"https://api.stormpath.com/v1/accounts/1wiYBRbNJ5huJu2HWeraLG/groups"},"groupMemberships":{"href":"https://api.stormpath.com/v1/accounts/1wiYBRbNJ5huJu2HWeraLG/groupMemberships"}}depeng@depeng:~/.stormpath$
+
+
+
+curl -X POST --user 46AQIRDRHOAAXMFDV4T2OM0SP:gWTPtVJ+TFKXrvg7CdNCjOZlznaX+DhHsyvx4R/cFHY \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+            "apacheShiroPermissions": [
+                "ship:NCC-1701-D:command",
+                "user:jlpicard:edit"
+            ]
+        }' \
+        "https://api.stormpath.com/v1/accounts/$JLPICARD_ACCOUNT_ID/customData"
